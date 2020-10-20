@@ -20,6 +20,8 @@ class BuildingTest < Minitest::Test
                             bathrooms: 2,
                             bedrooms: 2
                             })
+    @renter1 = Renter.new("Aurora")
+    @renter2 = Renter.new("Tim")
   end
 
   def test_it_exists_and_has_attributes
@@ -33,5 +35,17 @@ class BuildingTest < Minitest::Test
     @building.add_unit(@unit2)
 
     assert_equal [@unit1, @unit2], @building.units
+  end
+
+  def test_it_can_add_renters
+    assert_equal [], @building.renters
+
+    @unit1.add_renter(@renter1)
+
+    assert_equal ['Aurora'], @building.renters
+
+    @unit2.add_renter(@renter2)
+
+    assert_equal ['Aurora', 'Tim'], @building.renters
   end
 end
