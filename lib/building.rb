@@ -1,5 +1,5 @@
 class Building
-  attr_reader :units,
+  attr_reader :units
 
   def initialize
     @units = []
@@ -10,13 +10,15 @@ class Building
   end
 
   def renters
-    @units.map do |unit|
+    names = []
+    @units.each do |unit|
       if unit.renter.nil?
-        []
+        names
       else
-        unit.renter.name
+        names << unit.renter.name
       end
     end
+    names
   end
 
   def average_rent
