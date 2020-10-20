@@ -20,6 +20,18 @@ class BuildingTest < Minitest::Test
                             bathrooms: 2,
                             bedrooms: 2
                             })
+    @unit3 = Apartment.new({
+                              number: "C3",
+                              monthly_rent: 1150,
+                              bathrooms: 2,
+                              bedrooms: 2
+                              })
+    @unit4 = Apartment.new({
+                              number: "D4",
+                              monthly_rent: 1500,
+                              bathrooms: 2,
+                              bedrooms: 3
+                                })
     @renter1 = Renter.new("Aurora")
     @renter2 = Renter.new("Tim")
   end
@@ -38,6 +50,9 @@ class BuildingTest < Minitest::Test
   end
 
   def test_it_can_add_renters
+    @building.add_unit(@unit1)
+    @building.add_unit(@unit2)
+
     assert_equal [], @building.renters
 
     @unit1.add_renter(@renter1)
@@ -47,5 +62,27 @@ class BuildingTest < Minitest::Test
     @unit2.add_renter(@renter2)
 
     assert_equal ['Aurora', 'Tim'], @building.renters
+  end
+
+  def test_it_can_find_average_rent
+    @building.add_unit(@unit1)
+    @building.add_unit(@unit2)
+
+    assert_equal 1099.5, @building.average_rent
+  end
+
+  # Iteration 3
+  def test_it_can_list_rented_units
+    renter1 = Renter.new("Spencer")
+
+    @building.add_unit(@unit1)
+    @building.add_unit(@unit2)
+    @building.add_unit(@unit3)
+
+    assert_equal [], @building.rented_units
+
+    @unit2.add_renter(renter1)
+
+    assert_equal [@unit2], @building.rented_units
   end
 end
