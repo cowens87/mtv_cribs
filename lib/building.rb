@@ -1,7 +1,11 @@
 class Building
-  attr_reader :argument
+  attr_reader :units
 
   def initialize
-    @argument = argument
+    @units = []
+  end
+
+  def add_unit(unit)
+    @units << unit
   end
 end
