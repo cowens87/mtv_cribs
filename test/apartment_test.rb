@@ -4,6 +4,7 @@ require "./lib/renter"
 require "./lib/apartment"
 
 class ApartmentTest < Minitest::Test
+  # Iteration 1
   def setup
     @unit1 = Apartment.new({
                             number: "A1",

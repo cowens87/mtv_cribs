@@ -1,16 +1,16 @@
 require "minitest/autorun"
 require "minitest/pride"
+require "./lib/building"
 require "./lib/renter"
 require "./lib/apartment"
 
-class RenterTest < Minitest::Test
-  # Iteration 1
+class BuildingTest < Minitest::Test
+  # Iteration 2
   def setup
-    @renter1 = Renter.new("Jessie")
+    @building = Building.new
   end
 
   def test_it_exists_and_has_attributes
-    assert_instance_of Renter, @renter1
-    assert_equal "Jessie", @renter1.name
+    assert_instance_of Building, @building
   end
 end
