@@ -34,4 +34,38 @@ class Building
       unit.renter != nil
     end
   end
+
+  def renter_with_highest_rent
+    highest = @units.max_by do |unit|
+      unit.monthly_rent
+    end
+    highest.renter
+  end
+
+  def units_by_number_of_bedrooms
+    units_by_num = Hash.new {|hash_obj, key| hash_obj[key] = []}
+    @units.each do |unit|
+      units_by_num[unit.bedrooms] << unit.number
+    end
+    units_by_num
+  end
+
+  def annual_breakdown
+    breakdown = Hash.new {|hash_obj, key| hash_obj[key] = 0}
+    list = @units.select do |unit|
+        unit.renter != nil
+      end
+    list.each do |item|
+      breakdown[item.renter.name] += (item.monthly_rent * 12)
+    end
+    breakdown
+  end
+
+  def rooms_by_renter
+    rooms = {}
+    amenities = {}
+    @units.each do |unit|
+      rooms[unit.renter] = amenities[:bathrooms] = unit.bathrooms, amenities[:bedrooms] = unit.bedrooms
+    end
+  end
 end
