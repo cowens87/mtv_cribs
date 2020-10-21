@@ -63,9 +63,11 @@ class Building
 
   def rooms_by_renter
     rooms = {}
-    amenities = {}
     @units.each do |unit|
-      rooms[unit.renter] = amenities[:bathrooms] = unit.bathrooms, amenities[:bedrooms] = unit.bedrooms
+      if unit.renter != nil
+      rooms[unit.renter] = {:bathrooms => unit.bathrooms, :bedrooms => unit.bedrooms}
+      end
     end
+    rooms
   end
 end

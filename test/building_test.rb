@@ -149,8 +149,8 @@ class BuildingTest < Minitest::Test
                   renter1 => {
                               bathrooms: 2,
                               bedrooms: 2
-                            }}
-
+                            }
+                          }
       assert_equal expected, @building.rooms_by_renter
     end
 end
